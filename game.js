@@ -1,6 +1,6 @@
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 
-const board = [
+let board = [
   [0, 0, 0, 0, 0],
   [0, 0, 1, 0, 0],
   [0, 0, 1, 0, 0],
@@ -100,3 +100,5 @@ function game(board) {
   board = newBoard;
   return board;
 }
+
+board = game(board);
