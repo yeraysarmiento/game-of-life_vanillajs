@@ -3,6 +3,7 @@ const {
   whatCell,
   countCells,
   applyRules,
+  gameOfLife,
 } = require("./gameOfLife");
 
 describe("Given the function createBoard()", () => {
@@ -85,6 +86,34 @@ describe("Given the function applyRules()", () => {
 
       // Assert
       expect(result).toBe(expected);
+    });
+  });
+});
+
+describe("Given the function gameOfLife()", () => {
+  describe("When it receives an array [[0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]", () => {
+    test("Then it should return the array [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 1, 1, 1, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]", () => {
+      // Arrange
+      const array = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+      const expected = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      // Act
+      const result = gameOfLife(array);
+
+      // Assert
+      expect(result).toEqual(expected);
     });
   });
 });
