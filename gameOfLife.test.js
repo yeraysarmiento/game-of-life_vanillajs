@@ -116,4 +116,29 @@ describe("Given the function gameOfLife()", () => {
       expect(result).toEqual(expected);
     });
   });
+  describe("When it receives an array [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]", () => {
+    test("Then it should return the array [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 1, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]", () => {
+      // Arrange
+      const array = [
+        [1, 1, 0, 0, 0],
+        [1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+      const expected = [
+        [1, 1, 0, 0, 0],
+        [1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      // Act
+      const result = gameOfLife(array);
+
+      // Assert
+      expect(result).toEqual(expected);
+    });
+  });
 });
