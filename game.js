@@ -1,4 +1,4 @@
-//La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
+// La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 
 const board = [
   [0, 0, 0, 0, 0],
@@ -41,21 +41,21 @@ function whatCell(array, row, col) {
 }
 
 // Dada una coordenada row y col busca a sus vecinos y le aplica una función:
-countCells = (array, row, col) => {
-  const sumCells = 0;
+function countCells(array, row, col) {
+  let sumCells = 0;
   // Fila superior
-  sumNeighbours += whatCell(row - 1, col - 1);
-  sumNeighbours += whatCell(row - 1, col);
-  sumNeighbours += whatCell(row - 1, col + 1);
+  sumCells += whatCell(row - 1, col - 1);
+  sumCells += whatCell(row - 1, col);
+  sumCells += whatCell(row - 1, col + 1);
   // Fila central
-  sumNeighbours += whatCell(row, col - 1);
-  sumNeighbours += whatCell(row, col + 1);
+  sumCells += whatCell(row, col - 1);
+  sumCells += whatCell(row, col + 1);
   // Fila inferior
-  sumNeighbours += whatCell(row + 1, col - 1);
-  sumNeighbours += whatCell(row + 1, col);
-  sumNeighbours += whatCell(row + 1, col + 1);
+  sumCells += whatCell(row + 1, col - 1);
+  sumCells += whatCell(row + 1, col);
+  sumCells += whatCell(row + 1, col + 1);
   return sumCells;
-};
+}
 
 // Aplicar las normas del juego:
 // Si esta viva:
