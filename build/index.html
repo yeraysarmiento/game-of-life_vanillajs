@@ -13,10 +13,11 @@
     />
     <link rel="shortcut icon" type="image/jpg" href="/build/img/favicon.ico" />
     <link rel="stylesheet" href="style.css" />
+    <script src="./gameOfLife.js"></script>
   </head>
   <body>
     <section class="board-container">
-      <div></div>
+      <div id="board-game"></div>
     </section>
     <section class="control-container">
       <h1 class="main-title">GAME OF LIFE</h1>
@@ -35,9 +36,22 @@
           overpopulation.
         </li>
       </ol>
+      <div id="control-container__tamaño">
+        Tamaño
+        <input
+          type="range"
+          id="sizeCuadros"
+          value="20"
+          min="50"
+          max="500"
+          step="50"
+        />
+      </div>
       <div>
-        <button class="control-container__start">START</button>
-        <button class="control-container__stop">STOP</button>
+        <button class="control-container__start" id="button-start">
+          START
+        </button>
+        <button class="control-container__stop" id="button-stop">STOP</button>
       </div>
     </section>
   </body>
