@@ -4,7 +4,7 @@
   "main": "gameOfLife.js",
   "scripts": {
     "test": "jest --watchAll --collect-coverage",
-    "compile-css": "npx sass src/style.css build/style.css"
+    "compile-css": "npx sass style.scss ./build/style.css"
   },
   "repository": {
     "type": "git",
