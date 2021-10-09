@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "gameOfLife.js",
   "scripts": {
-    "test": "jest --watchAll --collect-coverage"
+    "test": "jest --watchAll --collect-coverage",
+    "compile-css": "npx sass src/style.css build/style.css"
   },
   "repository": {
     "type": "git",
