@@ -1,14 +1,12 @@
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
-
-let board = [
+/*
+const board = [
   [0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 0, 1, 0, 0],
   [0, 0, 0, 0, 0],
-  [0, 1, 1, 0, 0],
-  [0, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-];
-let rows;
-let cols;
+]; */
 
 // Función que crea el board de juego con todo resetado a 0.
 function createBoard(rows, cols) {
@@ -21,22 +19,6 @@ function createBoard(rows, cols) {
   }
   return board;
 }
-
-let board = createBoard(rows, cols); //Crea el array principal
-let newBoard = createBoard(rows, cols); //Duplica el board para poner los resultados al final
-
-// Función donde el jugador seleccionara cells
-
-// Función que recorre el tablero:
-//NECESARIO?
-/*function iterateBoard(board) {
-  for (row = 0; row < board.length; row += 1) {
-    for (col = 0; col < board.length; col += 1) {
-      countCells(board, row, col);
-    }
-  }
-  return board;
-}*/
 
 // Función que descarta celdas/columnas fuera del tablero y devuelve el valor de las celdas:
 function whatCell(array, row, col) {
@@ -91,14 +73,23 @@ function applyRules(cellValue, sumCells) {
 
 // Generar un nuevo array con las celdas cambiados.
 
-function game(board) {
+function gameOfLife(board) {
   const newBoard = createBoard(board.length, board.length);
   for (let row = 0; row < board.length; row += 1) {
     for (let col = 0; col < board.length; col += 1) {
-      let cellValue = board[row][col];
-      let sumCells = countCells(board, row, col);
+      const cellValue = board[row][col];
+      const sumCells = countCells(board, row, col);
       newBoard[row][col] = applyRules(cellValue, sumCells);
     }
   }
-  return newBoard;
+  board = newBoard;
+  return board;
 }
+
+module.exports = {
+  createBoard,
+  whatCell,
+  countCells,
+  applyRules,
+  gameOfLife,
+};
