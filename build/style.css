@@ -13,7 +13,6 @@ body {
 }
 
 .board-container {
-  background: green;
   height: 100vh;
   width: 70vw;
   padding: 15px;
@@ -27,33 +26,31 @@ body {
 .control-container {
   display: flex;
   flex-direction: column;
-  background: red;
   width: 30vw;
   height: 100vh;
   padding: 15px;
+  border-right: 1px solid black;
 }
 .control-container > h2 {
   font-size: 15px;
   line-height: 15px;
-  background: green;
   margin-bottom: 15px;
 }
 .control-container > div {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-  background: yellow;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.control-container > ul {
-  background: blue;
+.control-container > ol {
   font-size: 12px;
   flex-grow: 1;
   line-height: 15px;
+  margin-left: 15px;
 }
-.control-container > ul li {
-  margin-top: 10px;
+.control-container > ol li {
+  margin-bottom: 15px;
 }
 .control-container__start {
   padding: 10px;
@@ -66,7 +63,6 @@ body {
 }
 
 .main-title {
-  background: orange;
   margin-bottom: 30px;
 }
 
