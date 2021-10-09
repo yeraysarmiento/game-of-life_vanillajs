@@ -34,10 +34,11 @@ body {
   height: 100vh;
   padding: 15px;
 
-  & > p {
-    font-size: 12px;
-    flex-grow: 1;
+  & > h2 {
+    font-size: 15px;
     line-height: 15px;
+    background: green;
+    margin-bottom: 15px;
   }
 
   & > div {
@@ -48,7 +49,16 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  & > ul {
+    background: blue;
+    font-size: 12px;
+    flex-grow: 1;
+    line-height: 15px;
 
+    & li {
+      margin-top: 10px;
+    }
+  }
   &__start {
     padding: 10px;
     border-radius: 20px;
@@ -63,5 +73,5 @@ body {
 
 .main-title {
   background: orange;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }

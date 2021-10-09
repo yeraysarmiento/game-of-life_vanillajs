@@ -32,10 +32,11 @@ body {
   height: 100vh;
   padding: 15px;
 }
-.control-container > p {
-  font-size: 12px;
-  flex-grow: 1;
+.control-container > h2 {
+  font-size: 15px;
   line-height: 15px;
+  background: green;
+  margin-bottom: 15px;
 }
 .control-container > div {
   display: flex;
@@ -44,6 +45,15 @@ body {
   background: yellow;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.control-container > ul {
+  background: blue;
+  font-size: 12px;
+  flex-grow: 1;
+  line-height: 15px;
+}
+.control-container > ul li {
+  margin-top: 10px;
 }
 .control-container__start {
   padding: 10px;
@@ -57,7 +67,7 @@ body {
 
 .main-title {
   background: orange;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */
