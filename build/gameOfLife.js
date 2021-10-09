@@ -74,16 +74,18 @@ function applyRules(cellValue, sumCells) {
 // Generar un nuevo array con las celdas cambiados.
 
 function gameOfLife(board) {
-  const newBoard = createBoard(board.length, board.length);
-  for (let row = 0; row < board.length; row += 1) {
-    for (let col = 0; col < board.length; col += 1) {
-      const cellValue = board[row][col];
-      const sumCells = countCells(board, row, col);
-      newBoard[row][col] = applyRules(cellValue, sumCells);
+  for (let i = 0; i < 100; i += 1) {
+    const newBoard = createBoard(board.length, board.length);
+    for (let row = 0; row < board.length; row += 1) {
+      for (let col = 0; col < board.length; col += 1) {
+        const cellValue = board[row][col];
+        const sumCells = countCells(board, row, col);
+        newBoard[row][col] = applyRules(cellValue, sumCells);
+      }
     }
+    console.log(newBoard);
+    gameOfLife(newBoard);
   }
-  board = newBoard;
-  return board;
 }
 
 module.exports = {

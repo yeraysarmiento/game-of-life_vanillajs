@@ -4,7 +4,7 @@ const {
   countCells,
   applyRules,
   gameOfLife,
-} = require("./gameOfLife");
+} = require("../build/gameOfLife");
 
 describe("Given the function createBoard()", () => {
   describe("When it receives a number 5 and a number 5", () => {
