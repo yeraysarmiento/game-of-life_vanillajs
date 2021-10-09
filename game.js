@@ -1,101 +1,104 @@
-// Any live cell with two or three live neighbours survives.
-// Any dead cell with three live neighbours becomes a live cell.
-// All other live cells die in the next generation. Similarly, all other dead cells stay dead.
+// La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 
-const array = [
+let board = [
   [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 1, 1, 0, 0],
+  [0, 1, 1, 0, 0],
   [0, 0, 0, 0, 0],
 ];
+let rows;
+let cols;
 
-// Recorrer el tablero y clasificar segun el numero de vecinos:
-function iterateBoard(array) {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length; j++) {
-      array[i][j] = 2;
+// Función que crea el board de juego con todo resetado a 0.
+function createBoard(rows, cols) {
+  const board = [];
+  for (let i = 0; i < rows; i += 1) {
+    board[i] = [];
+    for (let j = 0; j < cols; j += 1) {
+      board[i][j] = 0;
     }
   }
+  return board;
 }
 
-iterateBoard(array);
-// Clasificar según cuántos vecinos tenga: 3, 5, 8:
-// Contar los vecinos vivos/muertos de cada celda cuando sean esquinas:
-// Contar los vecinos vivos/muertos de cada celda cuando sean extremo no esquina:
-// Contar los vecinos vivos/muertos de cada celda central:
+let board = createBoard(rows, cols); //Crea el array principal
+let newBoard = createBoard(rows, cols); //Duplica el board para poner los resultados al final
+
+// Función donde el jugador seleccionara cells
+
+// Función que recorre el tablero:
+//NECESARIO?
+/*function iterateBoard(board) {
+  for (row = 0; row < board.length; row += 1) {
+    for (col = 0; col < board.length; col += 1) {
+      countCells(board, row, col);
+    }
+  }
+  return board;
+}*/
+
+// Función que descarta celdas/columnas fuera del tablero y devuelve el valor de las celdas:
+function whatCell(array, row, col) {
+  let cellValue;
+  if (row < 0 || row > array.length - 1 || col < 0 || col > array.length - 1) {
+    cellValue = 0;
+  } else {
+    cellValue = array[row][col];
+  }
+  return cellValue;
+}
+
+// Dada una coordenada row y col busca a sus vecinos y le aplica una función:
+function countCells(array, row, col) {
+  let sumCells = 0;
+  // Fila superior
+  sumCells += whatCell(array, row - 1, col - 1);
+  sumCells += whatCell(array, row - 1, col);
+  sumCells += whatCell(array, row - 1, col + 1);
+  // Fila central
+  sumCells += whatCell(array, row, col - 1);
+  sumCells += whatCell(array, row, col + 1);
+  // Fila inferior
+  sumCells += whatCell(array, row + 1, col - 1);
+  sumCells += whatCell(array, row + 1, col);
+  sumCells += whatCell(array, row + 1, col + 1);
+  return sumCells;
+}
+
 // Aplicar las normas del juego:
 // Si esta viva:
 // Si 2 o 3 vecinos vivos - VIVE
 // Else - MUERE
-
 // Si está muerta:
 // Si 3 vecinos vivos - VIVE
 // Else - MUERE
+function applyRules(cellValue, sumCells) {
+  let newCellValue;
+  if (cellValue === 0 && sumCells === 3) {
+    newCellValue = 1;
+  } else if (cellValue === 1) {
+    if (sumCells === 2 || sumCells === 3) {
+      newCellValue = 1;
+    } else {
+      newCellValue = 0;
+    }
+  } else {
+    newCellValue = 0;
+  }
+  return newCellValue;
+}
 
 // Generar un nuevo array con las celdas cambiados.
 
-function whatNeighbour(array) {
-  try {
-    return array[row][col]; // funcion que analice la celda
-  } catch {
-    return 0;
-  }
-}
-
-countNeighbours = (row, col) => {
-  let total_neighbours = 0;
-  total_neighbours += whatNeighbour(row - 1, col - 1);
-  total_neighbours += whatNeighbour(row - 1, col);
-  total_neighbours += whatNeighbour(row - 1, col + 1);
-  total_neighbours += whatNeighbour(row, col - 1);
-  total_neighbours += whatNeighbour(row, col + 1);
-  total_neighbours += whatNeighbour(row + 1, col - 1);
-  total_neighbours += whatNeighbour(row + 1, col);
-  total_neighbours += whatNeighbour(row + 1, col + 1);
-  return total_neighbours;
-};
-
-const array = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-];
-
-function iterateBoard(array) {
-  const arr = [
-    [0, 0],
-    [0, 0],
-    [0, 0],
-  ];
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length; j++) {
-      //row 1
-      arr[i - 1][j - 1] = array[i - 1][j - 1];
-      arr[i - 1][j] = array[i - 1][j];
-      arr[i - 1][j + 1] = array[i - 1][j + 1];
-      //row 2
-      arr[i][j - 1] = array[i][j - 1];
-      arr[i][j] = array[i][j];
-      arr[i][j + 1] = array[i][j + 1];
-      //row 3
-      arr[i + 1][j - 1] = array[i + 1][j - 1];
-      arr[i + 1][j] = array[i + 1][j];
-      arr[i + 1][j + 1] = array[i + 1][j + 1];
+function game(board) {
+  const newBoard = createBoard(board.length, board.length);
+  for (let row = 0; row < board.length; row += 1) {
+    for (let col = 0; col < board.length; col += 1) {
+      let cellValue = board[row][col];
+      let sumCells = countCells(board, row, col);
+      newBoard[row][col] = applyRules(cellValue, sumCells);
     }
   }
-  return arr;
+  return newBoard;
 }
-
-iterateBoard(array);
-
-for (let i = 0; i < 5; i++) {
-  active_array[i] = [];
-  for (let j = 0; j < 5; j++) {
-    active_array[i][j] = 0;
-  }
-}
-
-console.log(active_array);
