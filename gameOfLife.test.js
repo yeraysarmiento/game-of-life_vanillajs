@@ -1,4 +1,4 @@
-const { createBoard, whatCell } = require("./gameOfLife");
+const { createBoard, whatCell, countCells } = require("./gameOfLife");
 
 describe("Given the function createBoard()", () => {
   describe("When it receives a number 5 and a number 5", () => {
@@ -40,7 +40,29 @@ describe("Given the function whatCell()", () => {
       const result = whatCell(array, row, col);
 
       // Assert
-      expect(result).toEqual(expected);
+      expect(result).toBe(expected);
+    });
+  });
+});
+
+describe("Given the function countCells()", () => {
+  describe("When it receives an array [[0, 1, 0], [0, 1, 0], [0, 1, 0]], a number 1 and a number 1", () => {
+    test("Then it should return 2", () => {
+      // Arrange
+      const array = [
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+      ];
+      const row = 1;
+      const col = 1;
+      const expected = 2;
+
+      // Act
+      const result = countCells(array, row, col);
+
+      // Assert
+      expect(result).toBe(expected);
     });
   });
 });
