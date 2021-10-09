@@ -106,27 +106,16 @@ function changeColor(evt) {
 }
 mySquare.addEventListener("click", changeColor, false);
 
-function clickableGrid(rows, cols, callback) {
-  let i = 0;
-  const grid = document.createElement("table");
-  grid.className = "grid";
-  for (let r = 0; r < rows; ++r) {
-    const tr = grid.appendChild(document.createElement("tr"));
-    for (let c = 0; c < cols; ++c) {
-      const cell = tr.appendChild(document.createElement("td"));
-      cell.innerHTML = ++i;
-      cell.addEventListener(
-        "click",
-        (function (el, r, c, i) {
-          return function () {
-            callback(el, r, c, i);
-          };
-        })(cell, r, c, i),
-        false
-      );
-    }
-  }
-  return grid;
+document.body.onload = addElement;
+
+
+
+const grid = document.querySelector(".board-container");
+
+function addElement() {
+  const contenedor = document.createElement("div");
+  contenedor.classList.add("contenedor");
+  grid.appendChild("contenedor");
 }
 
-clickableGrid(5, 5, callback);
+addElement();

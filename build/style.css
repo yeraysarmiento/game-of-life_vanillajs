@@ -61,29 +61,11 @@ body {
   border-radius: 20px;
 }
 
-.main-title {
-  margin-bottom: 30px;
-}
-
-.grid {
-  margin: 1em auto;
-  border-collapse: collapse;
-}
-
-.grid td {
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 13px;
-}
-
-.grid td.clicked {
-  background-color: yellow;
-  font-weight: bold;
+.contenedor {
+  background: red;
   color: red;
+  z-index: 90;
+  height: 100px;
 }
 
 /*# sourceMappingURL=style.css.map */
