@@ -1,4 +1,4 @@
-document.body.onload = createTable(50);
+createBoard(30, 30);
 
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 /*
@@ -13,11 +13,25 @@ const board = [
 // Función que crea el board de juego con todo resetado a 0.
 function createBoard(rows, cols) {
   const board = [];
+  const gridContainer = document.querySelector(".board-container");
+  const table = document.createElement("div");
+
+  table.setAttribute("class", "board-table");
+  gridContainer.appendChild(table);
+
   for (let i = 0; i < rows; i += 1) {
+    const rowsNumber = document.createElement("div");
     board[i] = [];
     for (let j = 0; j < cols; j += 1) {
+      const cell = document.createElement("div");
+      cell.setAttribute("id", `${i}-${j}`);
+      cell.setAttribute("class", "dead");
+      rowsNumber.appendChild(cell);
+      /* cell.onclick = cellToLife; */
+
       board[i][j] = 0;
     }
+    table.appendChild(rowsNumber);
   }
   return board;
 }
@@ -74,7 +88,6 @@ function applyRules(cellValue, sumCells) {
 }
 
 // Generar un nuevo array con las celdas cambiados.
-
 function gameOfLife(board) {
   for (let i = 0; i < 100; i += 1) {
     const newBoard = createBoard(board.length, board.length);
@@ -98,25 +111,19 @@ module.exports = {
   gameOfLife,
 };
 
-function createTable(rows) {
-  const gridContainer = document.querySelector(".board-container");
-  const table = document.createElement("div");
-  table.setAttribute("class", "board-table");
+function cellToLife() {
+  const rowcol = this.id.split("_");
+  const row = rowcol[0];
+  const col = rowcol[1];
+  const board = document.querySelector(".board-table");
 
-  gridContainer.appendChild(table);
-
-  for (let i = 0; i < rows; i++) {
-    const tr = document.createElement("div");
-    for (let j = 0; j < rows; j++) {
-      //
-      const cell = document.createElement("div");
-      cell.setAttribute("id", `${i}-${j}`);
-      cell.setAttribute("class", "dead-cell");
-      tr.appendChild(cell);
-    }
-    table.appendChild(tr);
+  if (board[row][col] === 0) {
+    this.setAttribute("class", "alive");
+    board[row][col] = 1;
+  } else {
+    this.setAttribute("class", "dead");
+    board[row][col] = 0;
   }
-
-  createBoard(rows, rows);
 }
 
+// Conseguir que cada celda se vincule a una celda del array 'real'
