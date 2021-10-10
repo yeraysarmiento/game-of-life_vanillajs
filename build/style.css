@@ -8,26 +8,26 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   display: flex;
   color: darkgoldenrod;
+  display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .board-container {
-  height: 100vh;
+  height: 100%;
   width: 70vw;
   padding: 15px;
-}
-.board-container > div {
-  width: 100%;
-  height: 100%;
-  background: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .control-container {
   display: flex;
   flex-direction: column;
   width: 30vw;
-  height: 100vh;
+  height: 100%;
   padding: 15px;
   border-right: 1px solid black;
 }
@@ -62,11 +62,33 @@ body {
   border-radius: 20px;
 }
 
-.celda {
-  background: red;
-  color: red;
+.board-table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  max-height: 600px;
+  width: 100%;
+  max-width: 600px;
+}
+.board-table > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 1px;
+}
+
+.dead-cell {
+  margin-right: 1px;
+  margin-left: 1px;
   z-index: 90;
-  height: 100px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=style.css.map */

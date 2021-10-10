@@ -1,30 +1,4 @@
-document.body.onload = changeColor();
-
-const grid = document.querySelector(".board-container");
-
-grid.addEventListener("click", () => {
-  grid.style.background = "blue";
-});
-
-changeColor();
-
-function createTable() {
-  const gridContainer = document.querySelector(".board-game");
-  const table = document.createElement("table");
-
-  for (let i = 0; i < rows; i++) {
-    const tr = document.createElement("tr");
-    for (let j = 0; j < cols; j++) {
-      //
-      const cell = document.createElement("td");
-      cell.setAttribute("id", `${i}_${j}`);
-      cell.setAttribute("class", "celda");
-      tr.appendChild(cell);
-    }
-    table.appendChild(tr);
-  }
-  gridContainer.appendChild(table);
-}
+document.body.onload = createTable(50);
 
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 /*
@@ -123,3 +97,26 @@ module.exports = {
   applyRules,
   gameOfLife,
 };
+
+function createTable(rows) {
+  const gridContainer = document.querySelector(".board-container");
+  const table = document.createElement("div");
+  table.setAttribute("class", "board-table");
+
+  gridContainer.appendChild(table);
+
+  for (let i = 0; i < rows; i++) {
+    const tr = document.createElement("div");
+    for (let j = 0; j < rows; j++) {
+      //
+      const cell = document.createElement("div");
+      cell.setAttribute("id", `${i}-${j}`);
+      cell.setAttribute("class", "dead-cell");
+      tr.appendChild(cell);
+    }
+    table.appendChild(tr);
+  }
+
+  createBoard(rows, rows);
+}
+
