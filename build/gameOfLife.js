@@ -1,14 +1,17 @@
-// La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
-/*
-const board = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-]; */
+// Instrucciones
+document.getElementById("button-info").addEventListener("click", () => {
+  document
+    .querySelector(".control-container__rules")
+    .setAttribute("style", "visibility: visible");
+});
 
-//
+document.getElementById("button-info").addEventListener("click", () => {
+  document
+    .querySelector(".control-container__instructions")
+    .setAttribute("style", "visibility: visible");
+});
+
+// Funcion
 const cols = 50;
 const rows = 50;
 let game = false;
@@ -188,10 +191,11 @@ function initiateScreen() {
 
 window.onload = initiateScreen;
 
-/* module.exports = {
+/*
+module.exports = {
   createBoard,
   whatCell,
   countCells,
   applyRules,
-  gameOfLife,
+  drawFinalBoard,
 }; */

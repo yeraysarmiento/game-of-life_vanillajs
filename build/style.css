@@ -42,28 +42,34 @@ body > div {
   width: 20vw;
   height: 100%;
 }
-.control-container > h2 {
+.control-container h2 {
+  margin-top: 30px;
   font-size: 15px;
   line-height: 15px;
   margin-bottom: 15px;
+  visibility: hidden;
 }
 .control-container > div {
   display: flex;
+}
+.control-container > div:nth-of-type(2) {
+  display: flex;
   flex-direction: row;
 }
-.control-container > div > div {
+.control-container > div:nth-of-type(2) > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
 }
-.control-container > ol {
+.control-container__rules {
   font-size: 12px;
   flex-grow: 1;
   line-height: 15px;
   margin-left: 15px;
+  visibility: hidden;
 }
-.control-container > ol li {
+.control-container__rules li {
   margin-bottom: 15px;
 }
 .control-container__start {
@@ -99,6 +105,7 @@ body > div {
 }
 .control-container__stop:first-of-type {
   font-size: 30px;
+  margin-bottom: 6px;
 }
 .control-container__stop:last-of-type {
   display: flex;

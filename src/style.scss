@@ -46,13 +46,18 @@ body {
   width: 20vw;
   height: 100%;
 
-  & > h2 {
+  & h2 {
+    margin-top: 30px;
     font-size: 15px;
     line-height: 15px;
     margin-bottom: 15px;
+    visibility: hidden;
   }
 
   & > div {
+    display: flex;
+  }
+  & > div:nth-of-type(2) {
     display: flex;
     flex-direction: row;
 
@@ -63,12 +68,12 @@ body {
       flex-direction: column;
     }
   }
-  & > ol {
+  &__rules {
     font-size: 12px;
-
     flex-grow: 1;
     line-height: 15px;
     margin-left: 15px;
+    visibility: hidden;
 
     & li {
       margin-bottom: 15px;
@@ -110,6 +115,7 @@ body {
 
     &:first-of-type {
       font-size: 30px;
+      margin-bottom: 6px;
     }
 
     &:last-of-type {
