@@ -12,8 +12,8 @@ const board = [
 const cols = 30;
 const rows = 30;
 
-const board = createBoard();
-const finalBoard = createBoard();
+let board = createBoard();
+let finalBoard = createBoard();
 
 // Función que CREA el board (array) de juego con todo resetado a 0.
 function createBoard() {
@@ -141,7 +141,9 @@ function drawFinalBoard() {
       finalBoard[row][col] = applyRules(cellValue, sumCells);
     }
   }
-  renovateCells(finalBoard);
+  renovateCells();
+  board = finalBoard;
+  finalBoard = createBoard(rows, cols);
 }
 
 // Modifica las clases de las celdas en función del finalBoard (Array):
@@ -158,7 +160,7 @@ function renovateCells() {
   }
 }
 
-// Botones
+// Botones de control
 function startButtonPush() {
   const startButton = document.getElementById("button-start");
   startButton.onclick = drawFinalBoard;
@@ -169,6 +171,7 @@ function stopButtonPush() {
   stopButton.onclick = resetBoard;
 }
 
+// Inicio del programa;
 function initiateScreen() {
   createBoard();
   drawBoard();
