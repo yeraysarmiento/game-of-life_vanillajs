@@ -35,10 +35,6 @@ function createBoard() {
 
 // Funcion que resetea todo el board:
 function resetBoard() {
-  const rowcol = this.id.split("-");
-  const row = rowcol[0];
-  const col = rowcol[1];
-
   for (let i = 0; i < rows; i += 1) {
     for (let j = 0; j < cols; j += 1) {
       board[i][j] = 0;
