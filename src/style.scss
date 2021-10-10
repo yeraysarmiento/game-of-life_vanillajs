@@ -24,6 +24,17 @@ body {
   justify-content: center;
 }
 
+.board-table {
+  border: 3px solid black;
+  box-shadow: 5px 5px lightgray;
+
+  & > div :nth-child(2n + 1) {
+  }
+
+  > :nth-child(2n + 1) {
+  }
+}
+
 .control-container {
   display: flex;
   flex-direction: column;
@@ -31,6 +42,7 @@ body {
   height: 100%;
   padding: 15px;
   border-right: 1px solid black;
+  background: green;
 
   & > h2 {
     font-size: 15px;
@@ -44,9 +56,12 @@ body {
     margin-bottom: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
+    background: grey;
   }
   & > ol {
+    background: orange;
     font-size: 12px;
+
     flex-grow: 1;
     line-height: 15px;
     margin-left: 15px;
@@ -67,6 +82,10 @@ body {
   }
 }
 
+.main-title {
+  background: red;
+}
+
 .board-table {
   display: flex;
   align-items: center;
@@ -84,25 +103,17 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-    margin: 1px;
   }
 }
 
 .dead {
-  margin-right: 1px;
-  margin-left: 1px;
-  z-index: 90;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
 }
 
 .alive {
-  margin-right: 1px;
-  margin-left: 1px;
-  z-index: 90;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
   background: black;
+  box-shadow: 3px 3px lightgray;
 }
