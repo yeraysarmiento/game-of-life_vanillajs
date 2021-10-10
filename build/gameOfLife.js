@@ -9,8 +9,8 @@ const board = [
 ]; */
 
 //
-const cols = 30;
-const rows = 30;
+const cols = 50;
+const rows = 50;
 let game = false;
 
 let board = createBoard();
