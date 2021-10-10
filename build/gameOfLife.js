@@ -1,4 +1,4 @@
-createBoard(30, 30);
+const board = createBoard(30, 30);
 
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 /*
@@ -27,11 +27,27 @@ function createBoard(rows, cols) {
       cell.setAttribute("id", `${i}-${j}`);
       cell.setAttribute("class", "dead");
       rowsNumber.appendChild(cell);
-      /* cell.onclick = cellToLife; */
+      cell.onclick = cellToLife;
 
       board[i][j] = 0;
     }
     table.appendChild(rowsNumber);
+  }
+  return board;
+}
+
+// El usuario revive las celdas con clicks (asigna 1 o 0 en cada click):
+function cellToLife() {
+  const rowcol = this.id.split("-");
+  const row = rowcol[0];
+  const col = rowcol[1];
+
+  if (board[row][col] === 0) {
+    this.setAttribute("class", "alive");
+    board[row][col] = 1;
+  } else {
+    this.setAttribute("class", "dead");
+    board[row][col] = 0;
   }
   return board;
 }
@@ -71,6 +87,7 @@ function countCells(array, row, col) {
 // Si está muerta:
 // Si 3 vecinos vivos - VIVE
 // Else - MUERE
+// DOM: Cuando cambie a 1/0 que cambie su clase a dead/alive:
 function applyRules(cellValue, sumCells) {
   let newCellValue;
   if (cellValue === 0 && sumCells === 3) {
@@ -103,27 +120,12 @@ function gameOfLife(board) {
   }
 }
 
-module.exports = {
+// Conseguir que cada celda se vincule a una celda del array 'real'
+
+/* module.exports = {
   createBoard,
   whatCell,
   countCells,
   applyRules,
   gameOfLife,
-};
-
-function cellToLife() {
-  const rowcol = this.id.split("_");
-  const row = rowcol[0];
-  const col = rowcol[1];
-  const board = document.querySelector(".board-table");
-
-  if (board[row][col] === 0) {
-    this.setAttribute("class", "alive");
-    board[row][col] = 1;
-  } else {
-    this.setAttribute("class", "dead");
-    board[row][col] = 0;
-  }
-}
-
-// Conseguir que cada celda se vincule a una celda del array 'real'
+}; */
