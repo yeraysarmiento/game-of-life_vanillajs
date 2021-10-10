@@ -141,19 +141,18 @@ function drawFinalBoard() {
       finalBoard[row][col] = applyRules(cellValue, sumCells);
     }
   }
-  renovateCells();
+  renovateCells(finalBoard);
 }
 
 // Modifica las clases de las celdas en función del finalBoard (Array):
 function renovateCells() {
   for (let i = 0; i < rows; i += 1) {
     for (let j = 0; j < cols; j += 1) {
-      const drawCell = document.getElementById(`${i}_${j}`);
-
+      const drawCell = document.getElementById(`${i}-${j}`);
       if (finalBoard[i][j] === 1) {
-        drawCell.className = ".alive";
+        drawCell.className = "alive";
       } else {
-        drawCell.className = ".dead";
+        drawCell.className = "dead";
       }
     }
   }
