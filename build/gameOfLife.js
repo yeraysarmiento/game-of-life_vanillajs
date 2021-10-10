@@ -139,8 +139,27 @@ function createNewBoard(board) {
   }
 }
 
+function startButton() {
 
+}
 
+function stopButton() {
+  
+}
+
+function controlButtons() {
+  const startButton = document.getElementById("button-start");
+  startButton.onclick = startButton;
+
+  const stopButton = document.getElementById("button-stop");
+  stopButton.onclick = stopButton;
+}
+
+function loadScreen() {
+  drawBoard();
+  createBoard();
+  controlButtons();
+}
 
 /* module.exports = {
   createBoard,
