@@ -1,5 +1,3 @@
-const board = createBoard(30, 30);
-
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 /*
 const board = [
@@ -10,9 +8,26 @@ const board = [
   [0, 0, 0, 0, 0],
 ]; */
 
-// Función que crea el board de juego con todo resetado a 0.
-function createBoard(rows, cols) {
+const cols = 30;
+const rows = 30;
+
+const originalBoard = createBoard();
+const finalBoard = createBoard();
+
+// Función que CREA el board (array) de juego con todo resetado a 0.
+function createBoard() {
   const board = [];
+  for (let i = 0; i < rows; i += 1) {
+    board[i] = [];
+    for (let j = 0; j < cols; j += 1) {
+      board[i][j] = 0;
+    }
+  }
+  return board;
+}
+
+// Función que DIBUJA el board de juego con todo resetado a 0.
+function drawBoard() {
   const gridContainer = document.querySelector(".board-container");
   const table = document.createElement("div");
 
@@ -105,22 +120,27 @@ function applyRules(cellValue, sumCells) {
 }
 
 // Generar un nuevo array con las celdas cambiados.
-function gameOfLife(board) {
+function createNewBoard(board) {
   for (let i = 0; i < 100; i += 1) {
-    const newBoard = createBoard(board.length, board.length);
+    const newBoard = drawBoard(board.length, board.length);
     for (let row = 0; row < board.length; row += 1) {
       for (let col = 0; col < board.length; col += 1) {
         const cellValue = board[row][col];
         const sumCells = countCells(board, row, col);
         newBoard[row][col] = applyRules(cellValue, sumCells);
+
+        if (newBoard[row][col] === 1) {
+          newBoard[row][col].setAttribute("class", "alive");
+        } else if (newBoard[row][col] === 0) {
+          newBoard[row][col].setAttribute("class", "dead");
+        }
       }
     }
-    console.log(newBoard);
-    gameOfLife(newBoard);
   }
 }
 
-// Conseguir que cada celda se vincule a una celda del array 'real'
+
+
 
 /* module.exports = {
   createBoard,
