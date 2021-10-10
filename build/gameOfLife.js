@@ -12,8 +12,8 @@ const board = [
 const cols = 30;
 const rows = 30;
 
-const board = createBoard();
-const finalBoard = createBoard();
+let board = createBoard();
+let finalBoard = createBoard();
 
 // Función que CREA el board (array) de juego con todo resetado a 0.
 function createBoard() {
@@ -142,24 +142,27 @@ function drawFinalBoard() {
     }
   }
   renovateCells();
+  board = finalBoard;
+  finalBoard = createBoard(rows, cols);
+
+  setTimeout(drawFinalBoard, 500);
 }
 
 // Modifica las clases de las celdas en función del finalBoard (Array):
 function renovateCells() {
   for (let i = 0; i < rows; i += 1) {
     for (let j = 0; j < cols; j += 1) {
-      const drawCell = document.getElementById(`${i}_${j}`);
-
+      const drawCell = document.getElementById(`${i}-${j}`);
       if (finalBoard[i][j] === 1) {
-        drawCell.className = ".alive";
+        drawCell.className = "alive";
       } else {
-        drawCell.className = ".dead";
+        drawCell.className = "dead";
       }
     }
   }
 }
 
-// Botones
+// Botones de control
 function startButtonPush() {
   const startButton = document.getElementById("button-start");
   startButton.onclick = drawFinalBoard;
@@ -170,6 +173,7 @@ function stopButtonPush() {
   stopButton.onclick = resetBoard;
 }
 
+// Inicio del programa;
 function initiateScreen() {
   createBoard();
   drawBoard();
