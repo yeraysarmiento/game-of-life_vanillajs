@@ -80,9 +80,6 @@ function cellToLife() {
   return board;
 }
 
-// Funcion que una vez el usuario ha elegido las celdas vivas, las traduzca a 1 en array:
-function alivetoOne() {}
-
 // Función que descarta celdas/columnas fuera del tablero y devuelve el valor de las celdas:
 function whatCell(array, row, col) {
   let cellValue;
@@ -135,19 +132,28 @@ function applyRules(cellValue, sumCells) {
   return newCellValue;
 }
 
-// Modifica el finalBoard en función de los valores de board original resultantes:
+// Modifica el finalBoard (Array) en función de los valores de board original resultantes:
 function drawFinalBoard() {
   for (let row = 0; row < board.length; row += 1) {
     for (let col = 0; col < board.length; col += 1) {
       const cellValue = board[row][col];
       const sumCells = countCells(board, row, col);
       finalBoard[row][col] = applyRules(cellValue, sumCells);
-      const changeCell = board[row][col];
+    }
+  }
+  renovateCells();
+}
 
-      if (finalBoard[row][col] === 1) {
-        changeCell.className = "alive";
-      } else if (finalBoard[row][col] === 0) {
-        changeCell.className = "dead";
+// Modifica las clases de las celdas en función del finalBoard (Array):
+function renovateCells() {
+  for (let i = 0; i < rows; i += 1) {
+    for (let j = 0; j < cols; j += 1) {
+      const drawCell = document.getElementById(`${i}_${j}`);
+
+      if (finalBoard[i][j] === 1) {
+        drawCell.className = ".alive";
+      } else {
+        drawCell.className = ".dead";
       }
     }
   }
