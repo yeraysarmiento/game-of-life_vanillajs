@@ -144,6 +144,8 @@ function drawFinalBoard() {
   renovateCells();
   board = finalBoard;
   finalBoard = createBoard(rows, cols);
+
+  setTimeout(drawFinalBoard, 500);
 }
 
 // Modifica las clases de las celdas en función del finalBoard (Array):
