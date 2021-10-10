@@ -11,9 +11,12 @@ const board = [
 //
 const cols = 30;
 const rows = 30;
+let game = false;
 
 let board = createBoard();
 let finalBoard = createBoard();
+
+let rounds;
 
 // Función que CREA el board (array) de juego con todo resetado a 0.
 function createBoard() {
@@ -165,11 +168,13 @@ function renovateCells() {
 // Botones de control
 function startButtonPush() {
   const startButton = document.getElementById("button-start");
+  game = true;
   startButton.onclick = drawFinalBoard;
 }
 
 function stopButtonPush() {
   const stopButton = document.getElementById("button-stop");
+  game = false;
   stopButton.onclick = resetBoard;
 }
 
