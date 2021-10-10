@@ -1,5 +1,3 @@
-const board = createBoard(30, 30);
-
 // La suma de los valores sus vecinos nos da la cantidad de celdas vivas/muertas, comparo el valor suma con el central para aplicar norma
 /*
 const board = [
@@ -10,9 +8,43 @@ const board = [
   [0, 0, 0, 0, 0],
 ]; */
 
-// Función que crea el board de juego con todo resetado a 0.
-function createBoard(rows, cols) {
+//
+const cols = 30;
+const rows = 30;
+
+const board = createBoard();
+const finalBoard = createBoard();
+
+// Función que CREA el board (array) de juego con todo resetado a 0.
+function createBoard() {
   const board = [];
+  for (let i = 0; i < rows; i += 1) {
+    board[i] = [];
+    for (let j = 0; j < cols; j += 1) {
+      board[i][j] = 0;
+    }
+  }
+  return board;
+}
+
+// Funcion que resetea todo el board:
+function resetBoard() {
+  const rowcol = this.id.split("-");
+  const row = rowcol[0];
+  const col = rowcol[1];
+
+  for (let i = 0; i < rows; i += 1) {
+    for (let j = 0; j < cols; j += 1) {
+      board[i][j] = 0;
+      const resetCell = document.getElementById(`${i}-${j}`);
+      resetCell.setAttribute("class", "dead");
+    }
+  }
+  return board;
+}
+
+// Función que DIBUJA el board de juego con todo resetado a 0.
+function drawBoard() {
   const gridContainer = document.querySelector(".board-container");
   const table = document.createElement("div");
 
@@ -21,19 +53,15 @@ function createBoard(rows, cols) {
 
   for (let i = 0; i < rows; i += 1) {
     const rowsNumber = document.createElement("div");
-    board[i] = [];
     for (let j = 0; j < cols; j += 1) {
       const cell = document.createElement("div");
       cell.setAttribute("id", `${i}-${j}`);
       cell.setAttribute("class", "dead");
       rowsNumber.appendChild(cell);
       cell.onclick = cellToLife;
-
-      board[i][j] = 0;
     }
     table.appendChild(rowsNumber);
   }
-  return board;
 }
 
 // El usuario revive las celdas con clicks (asigna 1 o 0 en cada click):
@@ -104,23 +132,52 @@ function applyRules(cellValue, sumCells) {
   return newCellValue;
 }
 
-// Generar un nuevo array con las celdas cambiados.
-function gameOfLife(board) {
-  for (let i = 0; i < 100; i += 1) {
-    const newBoard = createBoard(board.length, board.length);
-    for (let row = 0; row < board.length; row += 1) {
-      for (let col = 0; col < board.length; col += 1) {
-        const cellValue = board[row][col];
-        const sumCells = countCells(board, row, col);
-        newBoard[row][col] = applyRules(cellValue, sumCells);
+// Modifica el finalBoard (Array) en función de los valores de board original resultantes:
+function drawFinalBoard() {
+  for (let row = 0; row < board.length; row += 1) {
+    for (let col = 0; col < board.length; col += 1) {
+      const cellValue = board[row][col];
+      const sumCells = countCells(board, row, col);
+      finalBoard[row][col] = applyRules(cellValue, sumCells);
+    }
+  }
+  renovateCells();
+}
+
+// Modifica las clases de las celdas en función del finalBoard (Array):
+function renovateCells() {
+  for (let i = 0; i < rows; i += 1) {
+    for (let j = 0; j < cols; j += 1) {
+      const drawCell = document.getElementById(`${i}_${j}`);
+
+      if (finalBoard[i][j] === 1) {
+        drawCell.className = ".alive";
+      } else {
+        drawCell.className = ".dead";
       }
     }
-    console.log(newBoard);
-    gameOfLife(newBoard);
   }
 }
 
-// Conseguir que cada celda se vincule a una celda del array 'real'
+// Botones
+function startButtonPush() {
+  const startButton = document.getElementById("button-start");
+  startButton.onclick = drawFinalBoard;
+}
+
+function stopButtonPush() {
+  const stopButton = document.getElementById("button-stop");
+  stopButton.onclick = resetBoard;
+}
+
+function initiateScreen() {
+  createBoard();
+  drawBoard();
+  startButtonPush();
+  stopButtonPush();
+}
+
+window.onload = initiateScreen;
 
 /* module.exports = {
   createBoard,
