@@ -11,6 +11,7 @@ The app has been built using vanilla Javascript, CSS and Jest for testing it.
 
 ## Screenshots
 
+<img width="1179" alt="gameoflife" src="https://user-images.githubusercontent.com/26439964/146958724-37ffb39f-0500-45f3-bb7e-cc58af44ce78.png">
 
 
 ## Installation
